@@ -11,6 +11,7 @@
 <body>
     <section>
         <h1>Posts</h1>
+        <a href="{{ URL::route('community.post.store') }}">Create new</a>
         <ul>
             @foreach ($posts as $post)
                 <li>
@@ -22,6 +23,17 @@
                 </li>
             @endforeach
         </ul>
+
+        <table>
+            <tbody>
+                @foreach ($event_logs as $event_log)
+                    <tr>
+                        <td>{{ $event_log->log }}</td>
+                        <td>{{ $event_log->event }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </section>
 </body>
 

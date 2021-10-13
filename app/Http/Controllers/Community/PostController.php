@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers\Community;
 
+use Illuminate\Http\Request;
 use App\Models\Community\Post;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\EventSourcing\EventLog;
 
 class PostController extends Controller
 {
     public function index()
     {
-        return view('community.post.index', ['posts' => Post::all()]);
+        return view('community.post.index', [
+            'posts' => Post::all(),
+            'event_logs' => EventLog::all()
+        ]);
     }
 
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
             $request->validate([
-                'title' => 'required',
+                'title' => 'required|unique:community_posts',
                 'subtitle' => 'required',
                 'content' => 'required'
             ]);

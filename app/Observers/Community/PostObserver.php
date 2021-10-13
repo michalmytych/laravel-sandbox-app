@@ -3,6 +3,7 @@
 namespace App\Observers\Community;
 
 use App\Models\Community\Post;
+use App\Models\EventSourcing\EventLog;
 
 class PostObserver
 {
@@ -14,7 +15,10 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        //
+        EventLog::create([
+            'log' => 'New post created',
+            'event' => 'App\Models\Community\Post::created'
+        ]);
     }
 
     /**
