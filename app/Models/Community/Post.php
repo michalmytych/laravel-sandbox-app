@@ -10,15 +10,15 @@ class Post extends Model
 {
     use HasFactory, HasUuid;
 
-    protected string $table = 'community_posts';
+    protected $table = 'community_posts';
 
-    protected array $fillable = [
+    protected $fillable = [
         'title',
         'subtitle',
         'content'
     ];
 
-    protected array $hidden = [
+    protected $hidden = [
         'id'
     ];
 }

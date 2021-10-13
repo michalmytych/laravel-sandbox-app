@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Community\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'coummunity', 'as' => 'community.'], function () {
+    Route::group(['prefix' => 'posts', 'as' => 'post.'], function () {
+        Route::get('/', [PostController::class, 'index'])->name('index');
+        Route::get('/new', [PostController::class, 'store'])->name('store');
+        Route::post('/new', [PostController::class, 'store'])->name('store');
+    });
+
 });
